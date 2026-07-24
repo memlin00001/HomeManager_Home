@@ -36,6 +36,7 @@
       }
     }
 
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, 'Noto Sans TC', sans-serif;
       background: var(--bg);
@@ -117,6 +118,12 @@
       transition: border-color 0.15s;
     }
     .btn-secondary:hover { border-color: var(--brand); }
+    .btn-disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+    .store-badge-link { display: inline-flex; transition: transform 0.15s, opacity 0.15s; }
+    .store-badge-link:hover { transform: translateY(-2px); opacity: 0.9; }
+    .gplay-badge { height: 60px; border-radius: 8px; }
+    .appstore-badge { height: 52px; width: 185px; border-radius: 8px; margin: 4px 0; }
+    .store-badge-link.btn-disabled:hover { transform: none; }
 
     .hero-deco { font-size: 80px; margin-bottom: 32px; display: block; }
     .trust-chips {
@@ -188,10 +195,10 @@
 
     /* ── Privacy ── */
     .privacy-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; max-width: 520px; margin: 0 auto;
     }
-    @media (max-width: 640px) { .privacy-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .privacy-grid { grid-template-columns: 1fr; } }
     .privacy-card {
       text-align: center; padding: 28px 16px;
       background: var(--card-bg); border-radius: var(--radius);
@@ -256,7 +263,7 @@
   <nav class="nav">
     <div class="nav-inner">
       <span class="nav-logo">🏆 親子積分王</span>
-      <a class="nav-cta" href="https://play.google.com/store" target="_blank" rel="noopener">免費下載</a>
+      <a class="nav-cta" id="nav-cta" href="https://play.google.com/store" target="_blank" rel="noopener">免費下載</a>
     </div>
   </nav>
 
@@ -267,7 +274,14 @@
     <h1>讓好習慣<br>變成孩子最期待的事</h1>
     <p>用積分遊戲化，讓完成作業、幫忙家務、養成習慣<br>變得像在玩遊戲一樣有趣。</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="https://play.google.com/store" target="_blank" rel="noopener">📱 立即免費下載</a>
+      <a class="store-badge-link" href="https://play.google.com/store" target="_blank" rel="noopener">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-tw_badge_web_generic.png" alt="立即在 Google Play 下載" class="gplay-badge">
+      </a>
+      <span class="store-badge-link btn-disabled">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/zh-tw?size=250x83" alt="iOS 版本即將推出" class="appstore-badge">
+      </span>
+    </div>
+    <div class="hero-btns" style="margin-top:12px">
       <a class="btn-secondary" href="#features">了解更多功能</a>
     </div>
     <div class="trust-chips">
@@ -310,8 +324,8 @@
       <div class="features-grid">
         <div class="feature-card">
           <span class="feature-icon">🏆</span>
-          <div class="feature-title">積分制度 — 把努力變可見</div>
-          <div class="feature-desc">完成作業加 10 分、幫洗碗加 5 分。積分累積自動解鎖「見習生→小達人→大師→傳說」稱號，孩子隨時看到進度，成就感滿滿。</div>
+          <div class="feature-title">遊戲化成長 — 把每天的常規，變成孩子想破的關</div>
+          <div class="feature-desc">完成常規累積積分＝經驗值，自動解鎖等級稱號（Lv.1 新手→Lv.6 傳說），首頁一眼看出等級進度條。連續達成還有 🔥 連續天數徽章，孩子搶著保持紀錄不中斷。成就頁「🏅 徽章牆」一次展示所有已解鎖／待解鎖等級徽章與達成日期，收藏感滿滿。還能把多條常規打包成「📖 任務關卡」（例如晨間任務、睡前任務），當天全部完成再加碼獎勵積分，把瑣碎小事變成一場能過關的冒險。</div>
         </div>
         <div class="feature-card">
           <span class="feature-icon">📋</span>
@@ -321,7 +335,7 @@
         <div class="feature-card">
           <span class="feature-icon">🎁</span>
           <div class="feature-title">獎勵商店 — 讓積分真的有用</div>
-          <div class="feature-desc">建立家庭專屬獎勵清單，孩子用積分自主兌換。兌換成功還能分享成就圖，值得驕傲一下 🎉</div>
+          <div class="feature-desc">建立家庭專屬獎勵清單，孩子用積分自主兌換，獨立「兌換歷史」分頁完整回顧每一筆紀錄。兌換成功還能分享成就圖，值得驕傲一下 🎉</div>
         </div>
         <div class="feature-card">
           <span class="feature-icon">👨‍👩‍👧</span>
@@ -331,7 +345,7 @@
         <div class="feature-card span2">
           <span class="feature-icon">📊</span>
           <div class="feature-title">完整記錄追蹤 — 說不清楚時有憑有據</div>
-          <div class="feature-desc">每筆加扣分都有時間紀錄，日 / 週 / 月多維度統計，一眼看出哪些習慣已內化。CSV 匯出，自行備份或轉入試算表，資料永遠在你手中。</div>
+          <div class="feature-desc">每筆加扣分都有時間紀錄，日 / 週 / 月多維度統計，📈 積分趨勢折線圖一眼看出進步軌跡；設定頁統計總覽積分、常規、獎勵、行事曆筆數，一目了然。CSV 匯出，自行備份或轉入試算表，資料永遠在你手中。多台裝置（例如爸爸、媽媽各自的手機）也能透過「合併同步資料」互相分享最新紀錄，不會互相覆蓋掉對方新增的資料，免帳號、免雲端。</div>
         </div>
       </div>
     </div>
@@ -352,16 +366,6 @@
           <span class="privacy-icon">📴</span>
           <div class="privacy-title">零上傳</div>
           <div class="privacy-desc">所有資料存在手機本機，不經過任何伺服器</div>
-        </div>
-        <div class="privacy-card">
-          <span class="privacy-icon">✨</span>
-          <div class="privacy-title">零訂閱</div>
-          <div class="privacy-desc">核心功能永久免費，無任何月費或年費</div>
-        </div>
-        <div class="privacy-card">
-          <span class="privacy-icon">🚫</span>
-          <div class="privacy-title">可移除廣告</div>
-          <div class="privacy-desc">不喜歡廣告？一次性升級完全移除</div>
         </div>
       </div>
     </div>
@@ -388,11 +392,18 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-section">
+  <section class="cta-section" id="download">
     <div style="max-width:600px;margin:0 auto">
       <h2>現在就開始<br>讓育兒變輕鬆</h2>
       <p>免費下載，馬上體驗積分管理的奇妙效果。</p>
-      <a class="btn-white" href="https://play.google.com/store" target="_blank" rel="noopener">📱 免費下載親子積分王</a>
+      <div class="hero-btns" style="margin-top:0">
+        <a class="store-badge-link" href="https://play.google.com/store" target="_blank" rel="noopener">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-tw_badge_web_generic.png" alt="立即在 Google Play 下載" class="gplay-badge">
+        </a>
+        <span class="store-badge-link btn-disabled">
+          <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/zh-tw?size=250x83" alt="iOS 版本即將推出" class="appstore-badge">
+        </span>
+      </div>
     </div>
   </section>
 
@@ -405,5 +416,21 @@
     <div>© 2026 親子積分王. All rights reserved. &nbsp;·&nbsp; 資料只存在您的裝置，我們不蒐集任何個人資料。</div>
   </footer>
 
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var navCta = document.getElementById('nav-cta');
+      if (!navCta) return;
+      if (!isAndroid) {
+        // iOS 尚未上架、桌機無法安裝 App：導向頁面底部雙平台下載區塊，而非直接開商店連結
+        navCta.href = '#download';
+        navCta.removeAttribute('target');
+        navCta.removeAttribute('rel');
+        if (isIOS) navCta.textContent = '前往下載';
+      }
+    })();
+  </script>
 </body>
 </html>
