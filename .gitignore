@@ -1,2 +1,6 @@
 # 內部維護用文件，不需公開在 GitHub 上（此倉庫是公開的官網原始碼）
 網站維護檢查清單.md
+
+# 本機一鍵 commit+push 小工具，不需進版控
+webpush.bat
+webpush_*.bat
