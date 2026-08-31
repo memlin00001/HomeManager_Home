@@ -96,7 +96,7 @@
     <a class="site-nav-logo" href="index.html">🏆 親子積分王</a>
     <div class="site-nav-right">
       <a class="site-nav-link" href="index.html">← 返回官網首頁</a>
-      <a class="site-nav-cta" href="https://play.google.com/store" target="_blank" rel="noopener">免費下載</a>
+      <a class="site-nav-cta" id="nav-cta" href="https://play.google.com/store" target="_blank" rel="noopener">免費下載</a>
     </div>
   </div>
 </nav>
@@ -436,5 +436,24 @@
 </footer>
   </main>
 </div>
+<script>
+  (function () {
+    var ua = navigator.userAgent || '';
+    var isAndroid = /Android/i.test(ua);
+    var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var navCta = document.getElementById('nav-cta');
+    if (!navCta) return;
+    if (isIOS) {
+      navCta.href = 'https://apps.apple.com/app/id6794008256';
+      navCta.textContent = '免費下載';
+    } else if (!isAndroid) {
+      // 桌機／不明裝置無法判斷平台：導回官網下載區塊，讓使用者自選 Android 或 iOS。
+      navCta.href = 'index.html#download';
+      navCta.removeAttribute('target');
+      navCta.removeAttribute('rel');
+      navCta.textContent = '前往下載';
+    }
+  })();
+</script>
 </body>
 </html>
