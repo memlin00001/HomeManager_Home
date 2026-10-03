@@ -264,6 +264,27 @@
     .footer a { color: var(--brand); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
     .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+
+    /* ── Changelog ── */
+    .changelog-list { display: flex; flex-direction: column; gap: 16px; }
+    .changelog-item {
+      background: var(--card-bg); border-radius: var(--radius);
+      padding: 22px 26px; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    @media (prefers-color-scheme: dark) {
+      .changelog-item { border-color: rgba(255,255,255,0.07); }
+    }
+    .changelog-version { font-size: 16px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .changelog-date { font-size: 12px; font-weight: 500; color: var(--fg-muted); }
+    .changelog-latest {
+      display: inline-flex; align-items: center;
+      padding: 2px 10px; border-radius: 9999px;
+      background: rgba(99,102,241,0.12); color: var(--brand);
+      font-size: 11px; font-weight: 700;
+    }
+    .changelog-desc { padding-left: 20px; font-size: 14px; color: var(--fg-muted); line-height: 1.8; }
+    .changelog-desc li { margin-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -273,6 +294,7 @@
     <div class="nav-inner">
       <span class="nav-logo">🏆 親子積分王</span>
       <div class="nav-right">
+        <a class="nav-link" href="#changelog">📝 開發 LOG</a>
         <a class="nav-link" href="user_manual.html">📖 使用說明</a>
         <a class="nav-cta" id="nav-cta" href="https://play.google.com/store" target="_blank" rel="noopener">免費下載</a>
       </div>
@@ -347,7 +369,7 @@
         <div class="feature-card">
           <span class="feature-icon">🎁</span>
           <div class="feature-title">獎勵商店 — 讓積分真的有用</div>
-          <div class="feature-desc">建立家庭專屬獎勵清單，孩子用積分自主兌換，獨立「兌換歷史」分頁完整回顧每一筆紀錄。兌換成功還能分享成就圖，值得驕傲一下 🎉</div>
+          <div class="feature-desc">建立家庭專屬獎勵清單，孩子用積分自主兌換，獨立「兌換歷史」分頁完整回顧每一筆紀錄。獎勵也可以拍照或選圖當封面，一眼就認出來；兌換成功還能分享成就圖，值得驕傲一下 🎉</div>
         </div>
         <div class="feature-card">
           <span class="feature-icon">👨‍👩‍👧</span>
@@ -358,6 +380,21 @@
           <span class="feature-icon">📊</span>
           <div class="feature-title">完整記錄追蹤 — 說不清楚時有憑有據</div>
           <div class="feature-desc">每筆加扣分都有時間紀錄，日 / 週 / 月多維度統計，📈 積分趨勢折線圖一眼看出進步軌跡；設定頁統計總覽積分、常規、獎勵、行事曆筆數，一目了然。CSV 匯出，自行備份或轉入試算表，資料永遠在你手中。多台裝置（例如爸爸、媽媽各自的手機）也能透過「合併同步資料」互相分享最新紀錄，不會互相覆蓋掉對方新增的資料，免帳號、免雲端。</div>
+        </div>
+                <div class="feature-card">
+          <span class="feature-icon">🗓️</span>
+          <div class="feature-title">課表 — 週課表一目了然，還能跟行事曆連動</div>
+          <div class="feature-desc">節次 × 星期的週曆格線，點格子就能新增或編輯，星期可一次勾選多天不用重複輸入；沒時間排也能「一鍵套用預設課表範本」，排定的課程還會同步顯示在行事曆上。</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <div class="feature-title">背景風格 — 6 種主題色，隨時換個心情</div>
+          <div class="feature-desc">經典紫、暖陽橙、海洋藍，加上霧粉玫瑰、靄靄灰藍、燕麥棕灰三款柔和莫蘭迪色，設定裡點一下就切換全 App 配色，還能另外搭配深色模式。</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🖼️</span>
+          <div class="feature-title">圖示風格 — 底部導覽列也能換造型</div>
+          <div class="feature-desc">預設、童趣手繪、線條風三種圖示造型任選，套用在底部導覽列，風格更統一、更有個人味道。</div>
         </div>
         <div class="feature-card span2">
           <span class="feature-icon">📡</span>
@@ -405,6 +442,42 @@
           <div class="testimonial-author">— 雙寶爸爸，台中</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Changelog -->
+  <section class="section" id="changelog">
+    <div class="section-inner">
+      <div class="section-label">開發紀錄</div>
+      <h2>📝 開發 LOG</h2>
+      <div class="changelog-list">
+        <div class="changelog-item">
+          <div class="changelog-version">v2.0 系列 <span class="changelog-latest">最新</span><span class="changelog-date">2026/09</span></div>
+          <ul class="changelog-desc">
+            <li>全新「📡 近端同步」：兩支手機在同一個 Wi-Fi（或熱點）下，免帳號、免雲端直接互傳合併資料</li>
+            <li>可設定「每次開啟預設同步」，連過一次之後自動悄悄同步，不用每次手動操作</li>
+          </ul>
+        </div>
+        <div class="changelog-item">
+          <div class="changelog-version">v1.2 系列 <span class="changelog-date">2026/09</span></div>
+          <ul class="changelog-desc">
+            <li>新增「課表」功能：週課表色塊一目了然，可一鍵套用範本，並與行事曆連動</li>
+            <li>行事曆大改版：日期格直接顯示活動文字、活動可自訂顏色、備註支援粗體／斜體／清單</li>
+            <li>獎勵商店支援上傳照片，可拍照或選圖當封面</li>
+            <li>新增「背景風格」2 款莫蘭迪新色（靄靄灰藍、燕麥棕灰）與「線條風」圖示風格</li>
+            <li>修正任務關卡獎勵未正確入帳等問題</li>
+          </ul>
+        </div>
+        <div class="changelog-item">
+          <div class="changelog-version">v1.0 ～ v1.1 系列</div>
+          <ul class="changelog-desc">
+            <li>首次上架：常規管理、獎勵商店、作業管理、行事曆、成就與徽章等核心功能</li>
+            <li>新增師生模式（班級、名冊與批次計分）、問題回報管道等體驗優化</li>
+            <li>多項穩定性與版本管理機制修正</li>
+          </ul>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--fg-muted);font-size:13px;margin-top:20px">僅列出主要功能重點，完整異動內容請見 App 內「設定 → 關於」。</p>
     </div>
   </section>
 
